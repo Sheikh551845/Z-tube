@@ -31,13 +31,16 @@ const cardInfo = async(categoryId=1000) =>{
 
     const cardContainer = document.getElementById("card-container");
     const button= document.getElementById("sort");
-    
+    const div= document.getElementById('not-found');
+    const notFound=document.createElement("div");
+    div.innerHTML=" ";
+  
     cardContainer.innerHTML=" ";
 
     
 
     button.onclick=function() {
-        cardContainer.innerHTML=" ";
+             cardContainer.innerHTML=" ";
        
             data.data.sort(function(a, b) {
            
@@ -203,22 +206,22 @@ const cardInfo = async(categoryId=1000) =>{
                             </div>
                             </div>
                           </div>`;
-        cardContainer.appendChild(card);            
-        });
+        cardContainer.appendChild(card);    
+    });
 
-      if(!(data.status))
-      {
-        const div= document.getElementById('not-found');
-        const notFound=document.createElement("div")
+    if(!(data.status))
+    {
 
-        notFound.innerHTML=
-        `
-        <img src="./Icon.png" class="mx-auto mt-[100px]">
-        <h1 class="text-3xl font-bold text-center">Oops!! Sorry, There is no<br>content here</h1>
-        `;
+      notFound.innerHTML=
+      `
+      <img src="./Icon.png" class="mx-auto mt-[100px]">
+      <h1 class="text-3xl font-bold text-center">Oops!! Sorry, There is no<br>content here</h1>
+      `;
 
-        div.appendChild(notFound);
-      }
+      div.appendChild(notFound);
+    }
+
+      
 
 }
 
