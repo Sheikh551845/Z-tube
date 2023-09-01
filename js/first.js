@@ -49,9 +49,40 @@ const cardInfo = async(categoryId=1000) =>{
                 blueTick="";
             }
 
+            let time=" ";
+
+            
+
+            if(element.others.posted_date)
+            {
+                const stringTime=element.others.posted_date;
+
+                const numTime= parseFloat(stringTime);
+
+                const hour= Math.floor(numTime/3600);
+
+                const remain= numTime % 3600;
+
+                const minute= Math.floor(remain/60);
+
+                time =`${hour}hrs ${minute}min ago`
+
+            }
+            
+            else
+            {
+              time=" ";
+            }
             card.innerHTML=
                             `<div class="card w-[360px] bg-base-100 shadow-xl">
+                            <div class="relative">
                             <figure><img src="${element.thumbnail}" class="w-[360px] h-[200px] "alt="" /></figure>
+                            <div class="absolute top-[160px] right-[5px] bottom-[5px] ">
+                            <p class="bg-[#0000007F] text-white p-1">${time}</P>
+                            </div>
+                            
+                            </div>
+                           
                             <div class="card-body">
                             <div id="card-details-container" class="flex flex-row gap-2">
                                 <div>
