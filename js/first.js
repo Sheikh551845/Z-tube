@@ -29,22 +29,16 @@ const cardInfo = async(categoryId=1000) =>{
     const data= await res.json();
 
     const cardContainer = document.getElementById("card-container");
-
-
+    
     cardContainer.innerHTML=" ";
 
-   
+        data.data.forEach((element) => {
 
+        const tViews= (element.others?.views).slice(0,-1);
         
-        data.data.
-        forEach((element) => {
 
             const card= document.createElement("div");
 
-            totalViews
-            sortClick();
-
-    
             let blueTick="";
 
             if(element.authors[0].verified)
@@ -83,22 +77,24 @@ const cardInfo = async(categoryId=1000) =>{
                             </div>
                             </div>
                           </div>`;
-
-        
-
-        cardContainer.appendChild(card);
-            
+        cardContainer.appendChild(card);            
         });
 
+      if(!(data.status))
+      {
+        const div= document.getElementById('not-found');
+        const notFound=document.createElement("div")
 
+        notFound.innerHTML=
+        `
+        <img src="./Icon.png" class="mx-auto mt-[100px]">
+        <h1 class="text-3xl font-bold text-center">Oops!! Sorry, There is no<br>content here</h1>
+        `;
 
-        function sortClick(views){
-           views=views;
-           console.log("views");
-              
-        }
+        div.appendChild(notFound);
+      }
+
 }
-
 
 
 
